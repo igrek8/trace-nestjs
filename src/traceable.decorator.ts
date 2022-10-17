@@ -52,6 +52,6 @@ function ApiResponseHeader(): MethodDecorator {
   };
 }
 
-export function Traceable() {
+export function Traceable(): MethodDecorator {
   return applyDecorators(ApiHeader(X_REQUEST_ID_HEADER_DEFINITION), ApiResponseHeader());
 }

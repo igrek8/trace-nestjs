@@ -51,11 +51,11 @@ export class AppController {
 @Module({
   imports: [
     TracingModule.register({
-      // 2) specify which routes to trace
+      // 3) specify which routes to trace
       routes: ['*'],
     }),
     LoggerModule.register({
-      // 3) specify which routes to log
+      // 4) specify which routes to log
       routes: ['*'],
     }),
   ],

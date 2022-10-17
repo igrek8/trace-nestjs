@@ -4,11 +4,11 @@ import { LoggerModule, LoggerService } from 'gc-json-logger-nestjs';
 import { Traceable, TracingModule } from 'trace-nestjs';
 
 @Controller()
-@Traceable() // adds headers definition for your OpenAPI
 export class AppController {
   constructor(protected readonly logger: LoggerService) {}
 
   @Post('/trace')
+  @Traceable() // adds headers definition for your OpenAPI
   @ApiResponse({ type: String })
   demo() {
     // logger logs as x-request-id in "logging.googleapis.com/operation"."id"
