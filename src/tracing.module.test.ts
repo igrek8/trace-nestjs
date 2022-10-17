@@ -59,13 +59,6 @@ describe('LoggerModule', () => {
     expect(res.get('x-response-id')).toBe('uuid');
   });
 
-  it('calls setup', async () => {
-    (v4 as jest.MockedFunction<typeof v4>).mockReturnValue('uuid');
-    (validate as jest.MockedFunction<typeof validate>).mockReturnValue(true);
-    await request(app.getHttpServer()).get('/traceable');
-    expect(configure).toHaveBeenCalledWith('uuid');
-  });
-
   it('sets x-response-id', async () => {
     (validate as jest.MockedFunction<typeof validate>).mockReturnValue(true);
     const res = await request(app.getHttpServer()).get('/traceable').set(X_REQUEST_ID_HEADER, 'test');

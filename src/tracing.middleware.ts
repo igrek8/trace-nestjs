@@ -7,7 +7,7 @@ import { MODULE_OPTIONS_TOKEN, OPTIONS_TYPE } from './tracing.module-definition'
 export class TracingMiddleware implements NestMiddleware {
   constructor(@Inject(MODULE_OPTIONS_TOKEN) protected readonly options: typeof OPTIONS_TYPE) {}
 
-  async use(req: Request, res: Response, next: NextFunction) {
+  use(req: Request, res: Response, next: NextFunction) {
     const uuid = req.header(X_REQUEST_ID_HEADER) ?? v4();
 
     if (!validate(uuid)) {
@@ -17,7 +17,6 @@ export class TracingMiddleware implements NestMiddleware {
     }
 
     res.setHeader(X_RESPONSE_ID_HEADER, uuid);
-    await this.options.configure?.(uuid);
     next();
   }
 }

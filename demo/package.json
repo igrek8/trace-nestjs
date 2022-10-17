@@ -15,7 +15,8 @@
     "@nestjs/swagger": "file:../node_modules/@nestjs/swagger",
     "trace-nestjs": "file:..",
     "reflect-metadata": "^0.1.13",
-    "gc-json-logger-nestjs": "^0.0.8",
+    "gc-json-logger-nestjs": "^0.0.11",
+    "gc-json-logger-express": "^0.0.8",
     "gc-json-logger": "^0.0.4"
   },
   "devDependencies": {

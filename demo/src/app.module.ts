@@ -1,6 +1,5 @@
 import { Controller, Module, Post } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
-import { Logger } from 'gc-json-logger';
 import { LoggerModule, LoggerService } from 'gc-json-logger-nestjs';
 import { Traceable, TracingModule } from 'trace-nestjs';
 
@@ -23,10 +22,6 @@ export class AppController {
     TracingModule.register({
       // specify which routes to trace
       routes: ['*'],
-      configure(id: string) {
-        // bind x-request-id with the logger
-        Logger.getLogger(id);
-      },
     }),
     LoggerModule.register({
       // specify which routes to log

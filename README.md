@@ -42,7 +42,7 @@ export class AppController {
   @Post('/trace')
   @ApiResponse({ type: String })
   demo() {
-    // 5) log something
+    // 2) log something
     this.logger.info('do work');
     return 'data';
   }
@@ -53,13 +53,9 @@ export class AppController {
     TracingModule.register({
       // 2) specify which routes to trace
       routes: ['*'],
-      configure(id: string) {
-        // 3) bind x-request-id with the logger
-        Logger.getLogger(id);
-      },
     }),
     LoggerModule.register({
-      // 4) specify which routes to log
+      // 3) specify which routes to log
       routes: ['*'],
     }),
   ],
