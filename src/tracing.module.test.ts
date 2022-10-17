@@ -31,15 +31,12 @@ class TestController {
 describe('LoggerModule', () => {
   let app: INestApplication;
 
-  const configure = jest.fn();
-
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [
         TracingModule.register({
           routes: ['*'],
           excludedRoutes: ['/non-traceable'],
-          configure,
         }),
       ],
       controllers: [TestController],
