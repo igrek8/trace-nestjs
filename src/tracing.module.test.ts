@@ -14,16 +14,16 @@ jest.mock('uuid', () => ({ v4: jest.fn(), validate: jest.fn() }));
 
 @Controller()
 class TestController {
-  @Get('/traceable')
+  @Get('/trace')
   @Trace()
   @ApiResponse({ type: 'string' })
-  traceable() {
+  trace() {
     return 'traceable';
   }
 
-  @Get('/non-traceable')
+  @Get('/no-trace')
   @ApiResponse({ type: 'string' })
-  nonTraceable() {
+  noTrace() {
     return 'non traceable';
   }
 }
@@ -36,7 +36,7 @@ describe('LoggerModule', () => {
       imports: [
         TracingModule.register({
           routes: ['*'],
-          excludedRoutes: ['/non-traceable'],
+          excludedRoutes: ['/no-trace'],
         }),
       ],
       controllers: [TestController],
@@ -52,19 +52,19 @@ describe('LoggerModule', () => {
   it('uses x-request-id', async () => {
     (v4 as jest.MockedFunction<typeof v4>).mockReturnValue('uuid');
     (validate as jest.MockedFunction<typeof validate>).mockReturnValue(true);
-    const res = await request(app.getHttpServer()).get('/traceable');
+    const res = await request(app.getHttpServer()).get('/trace');
     expect(res.get('x-response-id')).toBe('uuid');
   });
 
   it('sets x-response-id', async () => {
     (validate as jest.MockedFunction<typeof validate>).mockReturnValue(true);
-    const res = await request(app.getHttpServer()).get('/traceable').set(X_REQUEST_ID_HEADER, 'test');
+    const res = await request(app.getHttpServer()).get('/trace').set(X_REQUEST_ID_HEADER, 'test');
     expect(res.headers['x-response-id']).toBe('test');
   });
 
   it('returns bad request if not uuid', async () => {
     (validate as jest.MockedFunction<typeof validate>).mockReturnValue(false);
-    const res = await request(app.getHttpServer()).get('/traceable').set(X_REQUEST_ID_HEADER, 'test');
+    const res = await request(app.getHttpServer()).get('/trace').set(X_REQUEST_ID_HEADER, 'test');
     expect(res.status).toBe(400);
     expect(res.body).toEqual({
       error: 'Bad Request',
@@ -76,7 +76,7 @@ describe('LoggerModule', () => {
   it('excludes routes', async () => {
     (v4 as jest.MockedFunction<typeof v4>).mockReturnValue('uuid');
     (validate as jest.MockedFunction<typeof validate>).mockReturnValue(true);
-    const res = await request(app.getHttpServer()).get('/non-traceable');
+    const res = await request(app.getHttpServer()).get('/no-trace');
     expect(res.headers['x-response-id']).toBe(undefined);
   });
 });

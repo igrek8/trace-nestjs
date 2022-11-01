@@ -32,10 +32,10 @@ import { Controller, Module, Post } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { Logger } from 'gc-json-logger';
 import { LoggerModule, LoggerService } from 'gc-json-logger-nestjs';
-import { Traceable, TracingModule } from 'trace-nestjs';
+import { Trace, TracingModule } from 'trace-nestjs';
 
 @Controller()
-@Traceable() // 1) adds headers definition for your OpenAPI
+@Trace() // 1) adds headers definition for your OpenAPI
 export class AppController {
   constructor(protected readonly logger: LoggerService) {}
 
