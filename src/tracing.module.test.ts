@@ -4,7 +4,7 @@ import { Test } from '@nestjs/testing';
 import request from 'supertest';
 import { v4, validate } from 'uuid';
 import { X_REQUEST_ID_HEADER } from './constants';
-import { Traceable } from './traceable.decorator';
+import { Trace } from './trace.decorator';
 import { TracingModule } from './tracing.module';
 
 jest.useFakeTimers();
@@ -15,7 +15,7 @@ jest.mock('uuid', () => ({ v4: jest.fn(), validate: jest.fn() }));
 @Controller()
 class TestController {
   @Get('/traceable')
-  @Traceable()
+  @Trace()
   @ApiResponse({ type: 'string' })
   traceable() {
     return 'traceable';
