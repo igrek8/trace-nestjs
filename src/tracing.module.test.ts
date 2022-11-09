@@ -1,7 +1,7 @@
 import { Controller, Get, INestApplication } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { Test } from '@nestjs/testing';
-import request from 'supertest';
+import * as request from 'supertest';
 import { v4, validate } from 'uuid';
 import { X_REQUEST_ID_HEADER } from './constants';
 import { Trace } from './trace.decorator';

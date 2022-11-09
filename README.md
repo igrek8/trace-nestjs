@@ -3,7 +3,7 @@
 Adds `X-Request-ID` and `X-Response-ID` headers that allow context log entries using [`gc-json-logger`](https://github.com/igrek8/gc-json-logger-nestjs).
 
 [![NPM](https://badgen.net/npm/v/trace-nestjs)](https://www.npmjs.com/trace-nestjs)
-[![Coverage Status](https://coveralls.io/repos/github/igrek8/trace-nestjs/badge.svg?branch=main)](https://coveralls.io/github/igrek8/trace-nestjs?branch=main)
+[![Coverage](https://codecov.io/gh/igrek8/trace-nestjs/branch/main/graph/badge.svg)](https://codecov.io/gh/igrek8/trace-nestjs)
 ![Release](https://badgen.net/github/checks/igrek8/trace-nestjs)
 ![License](https://badgen.net/github/license/igrek8/trace-nestjs)
 
@@ -23,7 +23,7 @@ yarn add \
 
 ## OpenAPI
 
-![Swagger](./docs/images/swagger.png)
+![Swagger](./media/swagger.png)
 
 ## Usage
 
