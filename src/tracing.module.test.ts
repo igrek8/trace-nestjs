@@ -1,8 +1,8 @@
 import { Controller, Get, INestApplication } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { Test } from '@nestjs/testing';
+import { randomUUID } from 'crypto';
 import * as request from 'supertest';
-import { v4, validate } from 'uuid';
 import { X_REQUEST_ID_HEADER } from './constants';
 import { Trace } from './trace.decorator';
 import { TracingModule } from './tracing.module';
@@ -10,7 +10,10 @@ import { TracingModule } from './tracing.module';
 jest.useFakeTimers();
 jest.setSystemTime(0);
 
-jest.mock('uuid', () => ({ v4: jest.fn(), validate: jest.fn() }));
+jest.mock('crypto', () => ({
+  ...jest.requireActual('crypto'),
+  randomUUID: jest.fn(),
+}));
 
 @Controller()
 class TestController {
@@ -50,32 +53,18 @@ describe('LoggerModule', () => {
   });
 
   it('uses x-request-id', async () => {
-    (v4 as jest.MockedFunction<typeof v4>).mockReturnValue('uuid');
-    (validate as jest.MockedFunction<typeof validate>).mockReturnValue(true);
+    (randomUUID as jest.MockedFunction<typeof randomUUID>).mockReturnValue('uuid');
     const res = await request(app.getHttpServer()).get('/trace');
     expect(res.get('x-response-id')).toBe('uuid');
   });
 
   it('sets x-response-id', async () => {
-    (validate as jest.MockedFunction<typeof validate>).mockReturnValue(true);
     const res = await request(app.getHttpServer()).get('/trace').set(X_REQUEST_ID_HEADER, 'test');
     expect(res.headers['x-response-id']).toBe('test');
   });
 
-  it('returns bad request if not uuid', async () => {
-    (validate as jest.MockedFunction<typeof validate>).mockReturnValue(false);
-    const res = await request(app.getHttpServer()).get('/trace').set(X_REQUEST_ID_HEADER, 'test');
-    expect(res.status).toBe(400);
-    expect(res.body).toEqual({
-      error: 'Bad Request',
-      message: `"${X_REQUEST_ID_HEADER}" header must contain a valid uuid`,
-      statusCode: 400,
-    });
-  });
-
   it('excludes routes', async () => {
-    (v4 as jest.MockedFunction<typeof v4>).mockReturnValue('uuid');
-    (validate as jest.MockedFunction<typeof validate>).mockReturnValue(true);
+    (randomUUID as jest.MockedFunction<typeof randomUUID>).mockReturnValue('uuid');
     const res = await request(app.getHttpServer()).get('/no-trace');
     expect(res.headers['x-response-id']).toBe(undefined);
   });
