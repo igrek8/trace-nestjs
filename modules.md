@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[src/trace.decorator.ts:55](https://github.com/igrek8/trace-nestjs/blob/bafe085/src/trace.decorator.ts#L55)
+[src/trace.decorator.ts:55](https://github.com/igrek8/trace-nestjs/blob/b7960d5/src/trace.decorator.ts#L55)
 
 ## Variables
 
@@ -43,7 +43,7 @@
 
 #### Defined in
 
-[src/constants.ts:1](https://github.com/igrek8/trace-nestjs/blob/bafe085/src/constants.ts#L1)
+[src/constants.ts:1](https://github.com/igrek8/trace-nestjs/blob/b7960d5/src/constants.ts#L1)
 
 ___
 
@@ -53,4 +53,4 @@ ___
 
 #### Defined in
 
-[src/constants.ts:3](https://github.com/igrek8/trace-nestjs/blob/bafe085/src/constants.ts#L3)
+[src/constants.ts:3](https://github.com/igrek8/trace-nestjs/blob/b7960d5/src/constants.ts#L3)
