@@ -49,7 +49,7 @@ NestModule.configure
 
 #### Defined in
 
-[src/tracing.module.ts:11](https://github.com/igrek8/trace-nestjs/blob/b7960d5/src/tracing.module.ts#L11)
+[src/tracing.module.ts:11](https://github.com/igrek8/trace-nestjs/blob/3d2d617/src/tracing.module.ts#L11)
 
 ## Constructors
 
@@ -69,7 +69,7 @@ ConfigurableModuleClass.constructor
 
 #### Defined in
 
-[src/tracing.module.ts:7](https://github.com/igrek8/trace-nestjs/blob/b7960d5/src/tracing.module.ts#L7)
+[src/tracing.module.ts:7](https://github.com/igrek8/trace-nestjs/blob/3d2d617/src/tracing.module.ts#L7)
 
 ## Properties
 
