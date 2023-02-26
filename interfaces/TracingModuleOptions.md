@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[src/tracing.module-options.ts:5](https://github.com/igrek8/trace-nestjs/blob/2ebabf2/src/tracing.module-options.ts#L5)
+[src/tracing.module-options.ts:5](https://github.com/igrek8/trace-nestjs/blob/4ade4be/src/tracing.module-options.ts#L5)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[src/tracing.module-options.ts:4](https://github.com/igrek8/trace-nestjs/blob/2ebabf2/src/tracing.module-options.ts#L4)
+[src/tracing.module-options.ts:4](https://github.com/igrek8/trace-nestjs/blob/4ade4be/src/tracing.module-options.ts#L4)
