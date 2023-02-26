@@ -78,7 +78,7 @@
     "@igrek8/typedoc": "1.0.1",
     "@types/node": "16.11.59",
     "husky": "8.0.1",
-    "rimraf": "3.0.2",
+    "rimraf": "4.1.2",
     "@nestjs/core": "9.3.9",
     "@nestjs/common": "9.3.9",
     "@nestjs/platform-express": "9.3.9",
