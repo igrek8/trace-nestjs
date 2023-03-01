@@ -10,9 +10,8 @@ export class TracingMiddleware implements NestMiddleware {
     try {
       const { Logger } = await import('gc-json-logger');
       Logger.setLogger(new Logger(uuid));
-    } catch {
-      /* istanbul ignore next */
-    }
+      /* c8 ignore next */
+    } catch {} /* eslint-disable-line no-empty */
     res.setHeader(X_RESPONSE_ID_HEADER, uuid);
     next();
   }
