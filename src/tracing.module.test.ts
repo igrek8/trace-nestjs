@@ -53,9 +53,9 @@ describe('LoggerModule', () => {
   });
 
   it('uses x-request-id', async () => {
-    (randomUUID as jest.MockedFunction<typeof randomUUID>).mockReturnValue('uuid');
+    (randomUUID as jest.MockedFunction<typeof randomUUID>).mockReturnValue('00000000-0000-0000-0000-000000000000');
     const res = await request(app.getHttpServer()).get('/trace');
-    expect(res.get('x-response-id')).toBe('uuid');
+    expect(res.get('x-response-id')).toBe('00000000-0000-0000-0000-000000000000');
   });
 
   it('sets x-response-id', async () => {
@@ -64,7 +64,7 @@ describe('LoggerModule', () => {
   });
 
   it('excludes routes', async () => {
-    (randomUUID as jest.MockedFunction<typeof randomUUID>).mockReturnValue('uuid');
+    (randomUUID as jest.MockedFunction<typeof randomUUID>).mockReturnValue('00000000-0000-0000-0000-000000000000');
     const res = await request(app.getHttpServer()).get('/no-trace');
     expect(res.headers['x-response-id']).toBe(undefined);
   });
