@@ -29,42 +29,7 @@ yarn add \
 
 ## Usage
 
-```ts
-import { Controller, Module, Post } from '@nestjs/common';
-import { ApiResponse } from '@nestjs/swagger';
-import { Logger } from 'gc-json-logger';
-import { LoggerModule, LoggerService } from 'gc-json-logger-nestjs';
-import { Trace, TracingModule } from 'trace-nestjs';
-
-@Controller()
-@Trace() // 1) adds headers definition for your OpenAPI
-export class AppController {
-  constructor(protected readonly logger: LoggerService) {}
-
-  @Post('/trace')
-  @ApiResponse({ type: String })
-  demo() {
-    // 2) log something
-    this.logger.info('do work');
-    return 'data';
-  }
-}
-
-@Module({
-  imports: [
-    TracingModule.register({
-      // 3) specify which routes to trace
-      routes: ['*'],
-    }),
-    LoggerModule.register({
-      // 4) specify which routes to log
-      routes: ['*'],
-    }),
-  ],
-  controllers: [AppController],
-})
-export class AppModule {}
-```
+[Example](./src/demo/main.ts)
 
 ```jsonc
 /* reduced logs */
